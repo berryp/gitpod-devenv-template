@@ -1,0 +1,14 @@
+image: gitpod/workspace-nix
+
+tasks:
+  - before: >
+      [[ ! -z $GIT_GPG_KEY  ]] &&
+        gpg --verbose --batch --import <(echo $GIT_GPG_KEY|base64 -d) &&
+        echo 'pinentry-mode loopback' >> ~/.gnupg/gpg.conf &&
+        git config --global user.signingKey "$GIT_GPG_KEY_ID!" &&
+        git config --global commit.gpgSign true
+
+vscode:
+  extensions:
+    - vscode-icons-team.vscode-icons
+    - bbenoist.Nix
